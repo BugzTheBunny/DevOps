@@ -1,4 +1,4 @@
-# Tomcat:
+# Docker:
 1. Pulling tomcat image  
 `docker pull tomcat`
 
@@ -41,6 +41,26 @@ CMD ["catalina.sh","run"] # Runs webapp with tomcat
 6. Open  
 `http://localhost:8888/app`
 
-# Jenkins
-1. `docker run -p 8080:8080 -p 50000:50000 -v {volume}:/var/jenkins_home jenkins`
-2. Initialize admin user.
+
+# Docker Compose
+1. Create `docker-compose.yaml` to start the webapp & the jenkins services, instead of running them seperatly.
+```
+version: '3'
+services:
+  tomcat:
+    image: tomcat:latest
+    volumes:
+      - .:/usr/local/tomcat/webapps
+    ports:
+      - 8888:8080
+  jenkins:
+    image: jenkins/jenkins:latest
+    volumes:
+      - D:/jenkins_home/:/var/jenkins_home jenkins/jenkins
+    ports:
+      - 8081:8080
+      - 50000:50000
+```
+2. Test `http://localhost:8081/` and `http://localhost:8888/`
+
+# Starting the App via jenkins.
