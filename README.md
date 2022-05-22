@@ -43,7 +43,7 @@ CMD ["catalina.sh","run"] # Runs webapp with tomcat
 
 
 # Docker Compose
-1. Create `docker-compose.yaml` to start the webapp & the jenkins services, instead of running them seperatly.
+1. Create `docker-compose.yaml` to start the webapp with it.
 ```
 version: '3'
 services:
@@ -53,14 +53,16 @@ services:
       - .:/usr/local/tomcat/webapps
     ports:
       - 8888:8080
-  jenkins:
-    image: jenkins/jenkins:latest
-    volumes:
-      - D:/jenkins_home/:/var/jenkins_home jenkins/jenkins
-    ports:
-      - 8081:8080
-      - 50000:50000
 ```
-2. Test `http://localhost:8081/` and `http://localhost:8888/`
+2. Test `http://localhost:8888/`
 
 # Starting the App via jenkins.
+1. New item
+2. Freestyle Project
+3. Mark:  
+    - [V] GitHub Project
+    - [V] Build periodically
+      - schedule : `1 * * * * `
+4. Build:
+    - Service: `webapp`
+    - Command: `docker-compose up`
