@@ -58,7 +58,7 @@ services:
 
 # Starting the App via jenkins.
 1. New item
-2. Freestyle Project
+2. Multibranch Pipeline
 3. Mark:  
     - [V] GitHub Project
     - [V] Build periodically
