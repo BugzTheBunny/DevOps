@@ -37,10 +37,11 @@ CMD ["catalina.sh","run"] # Runs webapp with tomcat
 4. Build docker webapp image.  
 `docker build -t=webapp .`
 5. Run webapp container using  
-`docker run -p=8888:8080 -v {volume}:/usr/local/tomcat/webapps/status webapp `
+`docker run -p=8888:8080 -v {volume}:/usr/local/tomcat/webapps/status webapp`
 6. Open  
 `http://localhost:8888/app`
 
+docker run -u root --privileged -p 8529:8080 -p 50000:50000 -d -v D:/jenkins_home:/var/jenkins_home -v $(which docker):/usr/bin/docker  jenkins/jenkins
 
 # Docker Compose
 1. Create `docker-compose.yaml` to start the webapp with it.
