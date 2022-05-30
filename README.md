@@ -9,7 +9,7 @@
 `docker pull jenkins/jenkins`
 
 4. Test Jenkins  
-`docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins`
+`docker run -u root --privileged -p 8081:8080 -p 50000:50000 -d -v D:/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins`
 
 # App:
 1. Create `index.jsp`
@@ -41,8 +41,6 @@ CMD ["catalina.sh","run"] # Runs webapp with tomcat
 6. Open  
 `http://localhost:8888/app`
 
-docker run -u root --privileged -p 8529:8080 -p 50000:50000 -v //var/run/docker.sock:/var/run/docker.sock -v D:/jenkins_home:/var/jenkins_home -v $(which docker):/usr/bin/docker  jenkins/jenkins
-
 # Docker Compose
 1. Create `docker-compose.yaml` to start the webapp with it.
 ```
@@ -67,3 +65,15 @@ services:
 4. Build:
     - Service: `webapp`
     - Command: `docker-compose up`
+
+
+
+# Debug:
+
+- If docker missing inside container:  
+  ```
+  curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz
+  ```

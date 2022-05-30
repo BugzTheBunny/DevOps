@@ -14,7 +14,7 @@ pipeline {
         stage('run webapp container') {
             steps {
                 sh """
-                docker run -d -p=8888:8080 -v /.:/usr/local/tomcat/webapps/status webapp
+                docker run -d -p=8081:8080 -v /.:/usr/local/tomcat/webapps/status webapp --force-recreate
                 """
             }
         }
