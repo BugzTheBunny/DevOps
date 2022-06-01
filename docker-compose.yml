@@ -3,6 +3,6 @@ services:
   application:
     image: tomcat:latest
     volumes:
-      - .:/usr/local/tomcat/webapps/status
+      - /.:/usr/local/tomcat/webapps/status
     ports:
-      - 8888:8080
+      - 8082:8080
